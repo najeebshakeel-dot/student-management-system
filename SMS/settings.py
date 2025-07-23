@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     'dashboard',
 ]
-
+AUTH_USER_MODEL = 'dashboard.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,12 +73,18 @@ WSGI_APPLICATION = 'SMS.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'sms_db',            # The name of the database you created in PostgreSQL
+            'USER': 'sms_user',          # The database user you created
+            'PASSWORD': 'pass1234', # <--- THIS MUST BE THE EXACT PASSWORD YOU JUST SET IN PGADMIN
+            'HOST': 'localhost',         # 'localhost' if PostgreSQL is on the same machine
+            'PORT': '5432',              # Default PostgreSQL port. Leave empty for default.
+        }
     }
-}
+
 
 
 # Password validation

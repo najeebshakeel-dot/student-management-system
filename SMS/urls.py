@@ -15,8 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from django.views.generic import RedirectView 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dashboard/', include('dashboard.urls')), # Include URLs from our 'dashboard' app
+        # Redirect the root URL ('/') to the login page within our dashboard app
+        path('', RedirectView.as_view(url='/dashboard/login/', permanent=False)),
 ]
